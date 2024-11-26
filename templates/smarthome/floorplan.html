@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Home - Room Selection</title>
+     <link rel="stylesheet" href="{{ url_for("static",filename = "style.css") }}">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="sidebar">
+        <div class="logo">SH</div>
+        <ul>
+            <li><a href="/" class="active">Home</a></li>
+            <li><a href="/bedroom">Bedroom</a></li>
+            <li><a href="/living_room">Living Room</a></li>
+            <li><a href="/kitchen">Kitchen</a></li>
+            <li><a href="/bathroom">Bathroom</a></li>
+        </ul>
+        <button class="logout-btn">{{ username }}<a href="/logout">Logout</a></button>
+    </nav>
+
+    <div class="main-content">
+        <header>
+            <h1>Select a Room to Control</h1>
+        </header>
+
+        <!-- 房间选择按钮区域 -->
+        <div class="room-selection-container">
+            <button class="room-button" onclick="window.location.href='/bedroom'">Bedroom</button>
+            <button class="room-button" onclick="window.location.href='/living_room'">Living Room</button>
+            <button class="room-button" onclick="window.location.href='/kitchen'">Kitchen</button>
+            <button class="room-button" onclick="window.location.href='/bathroom'">Bathroom</button>
+        </div>
+    </div>
+</body>
+</html>

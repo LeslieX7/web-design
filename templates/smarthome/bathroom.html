@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bathroom Controls</title>
+    <link rel="stylesheet" href="{{ url_for("static",filename = "style.css") }}">
+    <script src="{{ url_for('static',filename="api.js") }}"></script>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="sidebar">
+        <div class="logo">SH</div>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/bedroom">Bedroom</a></li>
+            <li><a href="/living_room">Living Room</a></li>
+            <li><a href="/kitchen">Kitchen</a></li>
+            <li><a href="/bathroom" class="active">Bathroom</a></li>
+        </ul>
+        <button class="logout-btn">{{ username }}<a href="/logout">Logout</a></button>
+    </nav>
+
+    <div class="main-content">
+        <header>
+            <h1>Bathroom Control</h1>
+        </header>
+
+        <div class="container">
+            <!-- Bedroom Light Control -->
+            <div class="device-control light-control">
+                <h2>Lights</h2>
+                <div id="light-bulb" class="light-bulb off"></div>
+                <label for="brightness">Brightness</label>
+                <input type="range" id="brightness" min="0" max="100" value="50" disabled>
+
+                <h3>RGB Control</h3>
+                <label for="red">Red</label>
+                <input type="range" id="red" min="0" max="255" value="128" disabled>
+                <p>Red: <span id="redValue">128</span></p>
+
+                <label for="green">Green</label>
+                <input type="range" id="green" min="0" max="255" value="128" disabled>
+                <p>Green: <span id="greenValue">128</span></p>
+
+                <label for="blue">Blue</label>
+                <input type="range" id="blue" min="0" max="255" value="128" disabled>
+                <p>Blue: <span id="blueValue">128</span></p>
+
+                <button id="toggle-light">Toggle Light</button>
+                <p>Status: <span id="lightStatus">Off</span></p>
+                <script>
+                    const  room_id = 4
+                     send_data(
+                         "/get_device",
+                         JSON.stringify({room_id:room_id, device_type_id:1}),
+                         "POST",
+                         inint_light,
+                         function (){
+                             alert(data.error)
+                         },
+                         {'Content-Type': 'application/json'}
+                     )
+
+                </script>
+            </div>
+
+            <!-- Bedroom Curtain Control -->
+            <div class="device-control curtain-control">
+                <h2>Curtain Control</h2>
+                <div class="curtain-container">
+                    <div id="left-curtain" class="curtain curtain-left"></div>
+                    <div id="right-curtain" class="curtain curtain-right"></div>
+                </div>
+
+                <label for="leftCurtainRange">Left Curtain</label>
+                <input type="range" id="leftCurtainRange" min="0" max="100" value="100">
+                <p>Left Status: <span id="leftCurtainStatus">Closed</span></p>
+                <label for="rightCurtainRange">Right Curtain</label>
+                <input type="range" id="rightCurtainRange" min="0" max="100" value="100">
+                <p>Right Status: <span id="rightCurtainStatus">Closed</span></p>
+
+                <script>
+                     send_data(
+                         "/get_device",
+                         JSON.stringify({room_id:room_id, device_type_id:2}),
+                         "POST",
+                         init_curtain,
+                         function (){
+                             alert(data.error)
+                         },
+                         {'Content-Type': 'application/json'}
+                     )
+
+                </script>
+            </div>
+
+
+        </div>
+    </div>
+
+    <script>
+        // Light Control Logic
+        const lightBulb = document.getElementById('light-bulb');
+        const brightnessInput = document.getElementById('brightness');
+        const redInput = document.getElementById('red');
+        const greenInput = document.getElementById('green');
+        const blueInput = document.getElementById('blue');
+        const redValue = document.getElementById('redValue');
+        const greenValue = document.getElementById('greenValue');
+        const blueValue = document.getElementById('blueValue');
+        const lightStatus = document.getElementById('lightStatus');
+        // 更新 RGB 数值显示
+        function updateRGBValues() {
+            redValue.textContent = redInput.value;
+            greenValue.textContent = greenInput.value;
+            blueValue.textContent = blueInput.value;
+
+        }
+        // 添加事件监听器，实时更新 RGB 数值显示
+        [redInput, greenInput, blueInput].forEach(input => {
+            input.addEventListener('input', updateRGBValues);
+        });
+        // 添加鼠标松开发送消息
+        [redInput, greenInput, blueInput].forEach(input => {
+            input.addEventListener('mouseup', ()=>{send_light_data(1)});
+        });
+
+        // Toggle Light Button Logic
+        document.getElementById('toggle-light').addEventListener('click', () => {
+            isLightOn = !isLightOn;
+            lightStatus.textContent = isLightOn ? 'On' : 'Off';
+            lightBulb.classList.toggle('off', !isLightOn);
+            [brightnessInput, redInput, greenInput, blueInput].forEach(input => {
+                input.disabled = !isLightOn;
+            });
+            send_light_data(room_id)
+        });
+
+        // 更新灯光颜色
+        function updateLightColor() {
+            const r = redInput.value, g = greenInput.value, b = blueInput.value;
+            const brightness = brightnessInput.value / 100;
+            lightBulb.style.backgroundColor = `rgba(${r}, ${g}, ${b}, ${brightness})`;
+            lightBulb.style.boxShadow = `0 0 ${brightness * 20}px rgba(${r}, ${g}, ${b}, ${brightness})`;
+        }
+
+        [brightnessInput, redInput, greenInput, blueInput].forEach(input => {
+            input.addEventListener('input', updateLightColor);
+        });
+        // 添加鼠标松开发送消息
+        [brightnessInput, redInput, greenInput, blueInput].forEach(input => {
+            input.addEventListener('mouseup', () =>{send_light_data(room_id)});
+        });
+
+        // Curtain Control Logic
+        const leftCurtain = document.getElementById('left-curtain');
+        const rightCurtain = document.getElementById('right-curtain');
+        const leftCurtainRange = document.getElementById('leftCurtainRange');
+        const rightCurtainRange = document.getElementById('rightCurtainRange');
+        const leftCurtainStatus = document.getElementById('leftCurtainStatus');
+        const rightCurtainStatus = document.getElementById('rightCurtainStatus');
+
+        leftCurtainRange.addEventListener('input', () => {
+            leftCurtain.style.width = `${leftCurtainRange.value}%`;
+            leftCurtainStatus.textContent = leftCurtainRange.value === '0' ? 'Open' : 'Closed';
+        });
+        leftCurtainRange.addEventListener('mouseup', () => {
+            send_curtain_data(room_id)
+        });
+        rightCurtainRange.addEventListener('input', () => {
+            rightCurtain.style.width = `${rightCurtainRange.value}%`;
+            rightCurtainStatus.textContent = rightCurtainRange.value === '0' ? 'Open' : 'Closed';
+        });
+         rightCurtainRange.addEventListener('mouseup', () => {
+            send_curtain_data(room_id)
+        });
+
+
+    </script>
+</body>
+</html>

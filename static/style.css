@@ -1,0 +1,550 @@
+/* General styles for all pages */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #ffe5d9;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+    flex-direction: column;
+}
+
+/* Background header styling */
+.background-header {
+    position: absolute;
+    top: 10%;
+    text-align: center;
+    width: 100%;
+    padding: 30px 0;
+    background-color: rgba(255, 127, 80, 0.8);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.background-header h1 {
+    font-size: 40px;
+    color: #ffffff;
+    margin: 0;
+    font-weight: bold;
+}
+
+/* Form container for login, signup, forgot password pages */
+.login-container {
+    background-color: white;
+    padding: 60px;
+    border-radius: 15px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    text-align: center;
+    z-index: 1;
+    margin-top: 250px; /* Default margin-top for all pages */
+}
+
+/* Specific margin-top for index page only */
+.index-container {
+    margin-top: 60px; /* Adjust this value to bring the form closer to the header */
+}
+
+.login-form h2, .signup-form h2, .forgot-password-form h2 {
+    color: #ff6f61;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+/* Input fields */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.input-group label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(255, 111, 97, 0.2);
+    font-size: 16px;
+    transition: box-shadow 0.3s ease;
+}
+
+.input-group input:focus {
+    box-shadow: 0 4px 15px rgba(255, 111, 97, 0.5);
+}
+
+/* Button styling for login, signup, forgot password */
+.login-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #ff7f50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(255, 127, 80, 0.5);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.login-btn:hover {
+    background-color: #ff5e3a;
+    transform: translateY(-3px);
+}
+
+/* Options for links (e.g., forgot password, sign up) */
+.options {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.options a {
+    color: #ff6f61;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.options a:hover {
+    text-decoration: underline;
+    color: #ff3c1a;
+}
+
+/* Additional section styling for signup form */
+.section {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+    width: 100%;
+    text-align: left;
+}
+
+/* Align form sections for signup page */
+.signup-container .section-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Floor Plan Page */
+.floorplan-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #ffe5d9;
+}
+
+.floorplan-container {
+    display: flex;
+    justify-content: space-around;
+    width: 70%;
+    transition: transform 0.3s ease; /* Smooth transition for container */
+}
+
+.room {
+    background-color: #fff;
+    border: 2px solid #ff7f50;
+    padding: 20px;
+    border-radius: 10px;
+    width: 150px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.room:hover {
+    background-color: #ff7f50;
+    color: white;
+    transform: translateY(-5px); /* Lift effect on hover */
+}
+
+.room span {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Back to Floor Plan button */
+.back-to-floorplan {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.back-to-floorplan button {
+    background-color: #ff7f50;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    box-shadow: 0 4px 15px rgba(255, 127, 80, 0.5);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.back-to-floorplan button:hover {
+    background-color: #ff5e3a;
+    transform: translateY(-3px); /* Lift effect on hover */
+}
+
+/* Control Page (Living Room, etc.) */
+.container {
+    padding: 20px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    transition: transform 0.3s ease;
+}
+
+.device-control {
+    background-color: white;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 300px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.device-control:hover {
+    transform: translateY(-3px); /* Lift effect */
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.2); /* Intensify shadow */
+}
+
+/* Curtain Control */
+.curtain {
+    width: 100px;
+    height: 120px;
+    background-color: #ffcc66;
+    margin: 0 auto 10px;
+    position: relative;
+    overflow: hidden;
+    transition: height 0.5s ease; /* Smooth height transition */
+}
+
+.curtain.closed::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #b5651d;
+    top: 0;
+    transition: height 0.5s ease;
+}
+
+.curtain.open::before {
+    height: 0;
+}
+
+/* Light Control */
+.light-bulb {
+    width: 60px;
+    height: 100px;
+    background-color: rgba(255, 255, 0, 0.7);
+    margin: 0 auto 10px;
+    border-radius: 50% 50% 40% 40% / 60% 60% 40% 40%;
+    box-shadow: 0 0 20px rgba(255, 255, 0, 0.7);
+    transition: box-shadow 0.3s ease; /* Smooth shadow transition */
+}
+
+.light-bulb:hover {
+    box-shadow: 0 0 30px rgba(255, 255, 0, 1); /* Intensify light on hover */
+}
+
+/* Air Conditioner Control */
+.ac-dial {
+    width: 120px;
+    height: 120px;
+    background-color: #ffcc66;
+    border-radius: 50%;
+    margin: 0 auto;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.ac-dial:hover {
+    transform: rotate(5deg); /* Small rotation on hover */
+}
+
+.ac-dial .dial-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Logout button styling */
+.logout-btn {
+    background-color: #ff5e3a;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    float: right;
+    margin-right: 20px;
+    box-shadow: 0 4px 15px rgba(255, 111, 97, 0.5);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.logout-btn:hover {
+    background-color: #ff3c1a;
+    transform: translateY(-3px); /* Lift effect on hover */
+}
+.light-bulb.off {
+    background-color: rgba(0, 0, 0, 0.1);
+    box-shadow: none;
+}
+
+.ac-dial.off {
+    background-color: #ddd;
+}
+.curtain-container {
+    position: relative;
+    width: 200px;
+    height: 150px;
+    margin: 0 auto;
+    border: 1px solid #ddd;
+    overflow: hidden;
+}
+
+.curtain {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    background-color: #b5651d;
+    transition: width 0.5s ease;
+}
+
+.curtain-left {
+    left: 0;
+    width: 50%;
+}
+
+.curtain-right {
+    right: 0;
+    width: 50%;
+}
+
+header {
+    background-color: rgba(255, 127, 80, 0.8); /* 设置背景颜色 */
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* 添加阴影 */
+}
+
+header h1 {
+    color: white; /* 设置字体颜色 */
+    font-size: 28px;
+    margin: 0;
+}
+
+
+
+
+
+
+
+
+
+
+/* 导航栏样式 */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 100%;
+    background-color: #ff7f50;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 20px;
+    padding: 10px 0;
+    width: 100%;
+    text-align: center;
+    background-color: #ff5e3a;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    width: 100%;
+    flex-grow: 1;
+}
+
+.sidebar li {
+    width: 100%;
+    margin: 5px 0;
+}
+
+.sidebar a {
+    display: block;
+    width: 100%;
+    padding: 10px 0;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* 鼠标悬停效果 */
+.sidebar a:hover {
+    background-color: white;
+    color: #ff7f50;
+    border-radius: 8px;
+}
+
+/* 当前页面高亮效果 */
+.sidebar a.active {
+    background-color: white;
+    color: #ff7f50;
+    border-radius: 8px;
+}
+
+/* Logout按钮样式 */
+.logout-btn {
+    position: absolute;
+    bottom: 20px;
+    width: calc(100% - 40px);
+    background-color: #ff5e3a;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(255, 127, 80, 0.5);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.logout-btn:hover {
+    background-color: white;
+    color: #ff5e3a;
+    transform: translateY(-3px);
+}
+
+
+
+
+
+
+/* 房间选择按钮区域的 Flexbox 样式 */
+.room-selection-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+/* 房间按钮样式 */
+.room-button {
+    padding: 15px 25px;
+    font-size: 18px;
+    color: #ff7f50;
+    background-color: white;
+    border: 2px solid #ff7f50;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+}
+
+.room-button:hover {
+    background-color: #ff7f50;
+    color: white;
+    transform: translateY(-3px);
+}
+
+
+.spacer {
+    height: 110px; /* 三行空白的高度 */
+}
+
+
+
+
+/* 右窗帘滑动条反向显示 */
+#rightCurtainRange {
+    direction: rtl;
+}
+
+
+/* 右窗帘滑动条反向显示 */
+#rightCurtainRange {
+    direction: rtl;
+}
+html,body{
+    min-width: 1024px;
+}
+@media(max-width:1600px){
+    .main-content{
+        margin-left: 10%;
+    }
+}
+@media(max-width:1400px){
+    .main-content{
+        margin-left: 14%;
+    }
+}
+@media(max-width:1365px){
+    .device-control{
+        width:280px;
+    }
+}
+@media(max-width:1232px){
+    .device-control{
+        width:100%;
+    }
+    body{
+        padding-top: 30%;
+    }
+    body.kitchen-box{
+        padding-top: 15%;
+    }
+    body.batnroom{
+        padding-top: 15%;
+    }
+    body.floorplan{
+        padding-top: 0;
+    }
+    body.index{
+        padding-top: 0;
+    }
+    body.login-page{
+        padding-top: 0;
+    }
+    .main-content{
+        padding: 20%;
+    }
+}
